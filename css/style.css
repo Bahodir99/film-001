@@ -108,8 +108,8 @@ body{
 .card{
     box-shadow: 0px 0px 10px 7px rgba(128, 128, 128, 0.284);
     background-color: red;
-    width: 250px;
-    height: 460px;
+    width: 230px;
+    height: 350px;
     border: none;
     border-radius: 10px;
     display: flex;
@@ -118,12 +118,11 @@ body{
     flex-direction: column;
     background-color: rgba(228, 226, 226, 0.987);   
     overflow: hidden;
-    cursor: pointer;
-    transition: all ease 1.5s;
+    transition: all ease 0.5s;
 }
 .card:hover{
     background-color: crimson;
-    transform: rotate(360deg) scale(130%);
+    transform: scale(97%);
 }
 .card img{
     width: 100%;
@@ -168,7 +167,8 @@ body{
     flex-wrap: wrap;
 }
 .list li{
-    margin: 10px 0;
+    margin-top: 10px;
+    margin-left: 10px;
 }
 
 .btn__group button{
@@ -187,4 +187,8 @@ body{
     background-color: crimson;
     color: chartreuse;
     transform: scale(130%);
+}
+.btn__like{
+    padding: 10;
+    margin-left: 40px;
 }

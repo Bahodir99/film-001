@@ -775,6 +775,7 @@ function mapper(mov__slice){
       <p class="mov__year">movie-year: ${i.movie_year}</p>
       <h3 class="title">Title: ${i.Title}</h3>
       <b class="rayting">Raiting: ${i.imdb_rating} </b>
+      <button id=${i.ytid} class="btn__like">Like</button>
       <b class="category">Category: ${i.Categories}</b>
       </div>`;
     elList.appendChild(NewLi)
@@ -804,6 +805,7 @@ elYear.addEventListener('change', (e) => {
         <h3 class="title">Title: ${e.Title}</h3>
         <b class="rayting">Raiting: ${e.imdb_rating} </b>
         <b class="category">Category: ${e.Categories}</b>
+        <button  id=${i.ytid} class="btn_like">Like</button>
         </div>`;
     elList.appendChild(NewLi)
     NewLi.classList.add('card')
@@ -828,6 +830,7 @@ elRay.addEventListener('change', (e) => {
         <h3 class="title">Title: ${e.Title}</h3>
         <b class="rayting">Raiting: ${e.imdb_rating} </b>
         <b class="category">Category: ${e.Categories}</b>
+        <button  id=${i.ytid} class="btn_like">Like</button>
         </div>`;
     elList.appendChild(NewLi)
     NewLi.classList.add('card')
@@ -847,6 +850,7 @@ elCat.addEventListener('change', (a)=>{
             <h3 class="title">Title: ${e.Title}</h3>
             <b class="rayting">Raiting: ${e.imdb_rating} </b>
             <b class="category">Category: ${e.Categories}</b>
+            <button  id=${i.ytid} class="btn_like">Like</button>
             </div>`;
         elList.appendChild(NewLi)
         NewLi.classList.add('card')
@@ -891,6 +895,7 @@ elForm.addEventListener('submit', (e)=>{
           <h3 class="title">Title: ${i.Title}</h3>
           <b class="rayting">Raiting: ${i.imdb_rating} </b>
           <b class="category">Category: ${i.Categories}</b>
+          <button id=${i.ytid} class="btn_like">Like</button>
           </div>`;
       elList.appendChild(NewLi)
       NewLi.classList.add('card')    
@@ -899,3 +904,40 @@ elForm.addEventListener('submit', (e)=>{
 
 
 })
+
+
+let elOff = document.querySelector('.card__off')
+
+
+let elLike = document.querySelectorAll('.btn__like');
+const freeArr = []
+elLike.forEach((btn)=>{
+  btn.addEventListener('click', ()=>{
+    locMapper()
+    if (!freeArr.find((e)=> e.ytid == btn.id)){
+      freeArr.push(movies.find((i)=> i.ytid == btn.id));
+      window.localStorage.setItem('localData', JSON.stringify(freeArr))
+      console.log(freeArr);
+    }
+  })
+})
+
+locMapper()
+function locMapper(){
+  const localData = JSON.parse(window.localStorage.getItem('localData'))
+  localData.forEach((e)=>{
+    let newItem = document.createElement('li')
+    newItem.innerHTML = `
+    <div class="card">
+    <img src="https://i.ytimg.com/vi/${e.ytid}/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLB9-WUeNO830WR5wLWLUv8hRRyOhA" alt="">
+    <p class="mov__year">movie-year: ${e.movie_year}</p>
+    <h3 class="title">Title: ${e.Title}</h3>
+    <b class="rayting">Raiting: ${e.imdb_rating} </b>
+    <b class="category">Category: ${e.Categories}</b>
+    <button id=${e.ytid} class="btn_like">Like</button>
+    </div>`;
+    elOff.appendChild(newItem)
+  })  
+}
+
+
